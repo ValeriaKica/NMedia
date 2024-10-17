@@ -65,9 +65,10 @@
         android:layout_height="wrap_content"
         android:autoLink="web"
         android:lineSpacingMultiplier="1.5"
-        android:paddingBottom="@dimen/margin"
         android:paddingTop="@dimen/margin"
+        android:paddingBottom="@dimen/margin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierHeader"
         tools:text="@sample/posts.json/data/content" />
@@ -88,18 +89,17 @@
         android:contentDescription="@string/description_post_like"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierIcons"
-        app:srcCompat="@drawable/baseline_favorite_border_24"/>
+        app:srcCompat="@drawable/baseline_favorite_border_24" />
 
     <TextView
         android:id="@+id/likeCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text ="10"
         android:layout_marginStart="8dp"
         android:layout_marginTop="@dimen/margin"
-        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
         app:layout_constraintStart_toEndOf="@id/like"
-        />
+        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
+        tools:text="10" />
 
     <ImageButton
         android:id="@+id/share"
@@ -117,22 +117,21 @@
         android:id="@+id/shareCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text ="10"
         android:layout_marginStart="8dp"
         android:layout_marginTop="@dimen/margin"
-        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
         app:layout_constraintStart_toEndOf="@id/share"
-        />
+        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
+        tools:text="10" />
 
     <ImageButton
         android:id="@+id/views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_share"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/viewsCount"
         app:layout_constraintTop_toBottomOf="@id/barrierIcons"
         app:srcCompat="@drawable/baseline_remove_red_eye_24" />
 
@@ -140,10 +139,9 @@
         android:id="@+id/viewsCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text ="5000"
         android:layout_marginStart="8dp"
         android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierIcons"
-        app:layout_constraintStart_toEndOf="@id/views"
-        />
+        tools:text="5000" />
 </androidx.constraintlayout.widget.ConstraintLayout>
