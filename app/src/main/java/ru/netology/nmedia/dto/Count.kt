@@ -1,7 +1,5 @@
 package ru.netology.nmedia.dto
 
-import java.text.DecimalFormat
-
 object Count {
 
     fun formatNumber(number: Int): String {
