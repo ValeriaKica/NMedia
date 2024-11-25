@@ -24,37 +24,7 @@ class MainActivity : AppCompatActivity() {
         
         binding.list.adapter = adapter 
         viewModel.data.observe(this){posts->
-            adapter.list=posts
+            adapter.submitList(posts)
         }
-
-       // viewModel.data.observe(this) { post ->
-       //     with(binding) {
-       //         author.text = post.author
-       //         content.text = post.content
-       //         published.text = post.published
-       //         likeCount.text = Count.formatNumber(post.likes)
-       //         shareCount.text = Count.formatNumber(post.sharing)
-       //         viewsCount.text = Count.formatNumber(post.views)
-       //         like.setImageResource(
-       //             if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.baseline_favorite_border_24
-       //         )
-       //         likeCount.text = Count.formatNumber(post.likes)
-       //         shareCount.text = Count.formatNumber(post.sharing)
-        //        viewsCount.text = Count.formatNumber(post.views)
-        //    }
-      //  }
-
-      //  binding.like.setOnClickListener {
-      //      viewModel.like()
-      //  }
-
-      //  binding.share.setOnClickListener {
-       //     viewModel.share()
-      //  }
-
-      //  binding.views.setOnClickListener {
-      //      viewModel.views()
-      //  }
-
     }
 }

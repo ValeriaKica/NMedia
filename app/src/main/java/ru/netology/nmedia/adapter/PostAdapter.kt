@@ -18,21 +18,13 @@ class PostAdapter (
     private val onShareListener: OnShareListener
 ): ListAdapter<Post,PostViewHolder>(PostsDiffCallBack()){
 
-    var list = emptyList<Post>()
-        set(value) {
-            field=value
-            notifyDataSetChanged()
-        }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
        val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return PostViewHolder(binding, onLikeListener,onShareListener)
     }
 
-    override fun getItemCount(): Int = list.size
-
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val post=list[position]
+        val post=getItem(position)
         holder.bind(post)
     }
 
