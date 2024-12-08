@@ -58,7 +58,6 @@ class PostViewHolder(
                 onOnInteractionListener.onLike(post)
             }
             menu.setOnClickListener {
-
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.menu_post)
                     setOnMenuItemClickListener { item ->
@@ -78,7 +77,6 @@ class PostViewHolder(
                     }
                 }.show()
             }
-
             share.setOnClickListener {
                 post.sharing++
                 onOnInteractionListener.onShare(post)

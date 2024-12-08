@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation libs.generativeai
     def recyclerview_version = "1.3.2"
 
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"

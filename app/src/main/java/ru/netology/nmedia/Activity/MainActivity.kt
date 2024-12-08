@@ -1,10 +1,13 @@
 package ru.netology.nmedia.Activity
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.ai.client.generativeai.type.content
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostAdapter
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.list.adapter = adapter
-        binding.list.itemAnimator = null
+     //   binding.list.itemAnimator = null
 
         viewModel.data.observe(this) { posts ->
             val newPost = posts.size > adapter.currentList.size && adapter.currentList.isNotEmpty()
@@ -56,35 +59,53 @@ class MainActivity : AppCompatActivity() {
             }
         }
         viewModel.edited.observe(this) {
-            if (it.id != 0L) {
-                binding.content.setText(it.content)
-                binding.content.focusAndShowKeyboard()
-                groupEditPostContent.visibility = View.VISIBLE
-                binding.EditMessage.clearFocus()
-            }
-
+           with(binding.content){
+               if (it.id != 0.toLong()){
+                   binding.group.visibility=View.VISIBLE
+                   requestFocus()
+                   setText(it.content)
+               }
+           }
         }
         binding.save.setOnClickListener {
-            val text = binding.content.text.toString()
-            if (text.isBlank()) {
-                Toast.makeText(this@MainActivity, R.string.error_empty_content, Toast.LENGTH_LONG)
-                    .show()
-                return@setOnClickListener
+            with(binding.content) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        context.getString(R.string.error_empty_content),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                viewModel.changeContent(text.toString())
+                viewModel.save()
+
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+                binding.group.visibility = View.GONE
             }
-            binding.content.setText("")
-            groupEditPostContent.visibility = View.GONE
-            viewModel.applyChangesAndSave(text)
-            AndroidUtils.hideKeyboard(it)
-            binding.content.clearFocus()
-
         }
+
         binding.clear.setOnClickListener {
-            binding.content.setText("")
-            groupEditPostContent.visibility = View.GONE
-            binding.content.clearFocus()
-            AndroidUtils.hideKeyboard(it)
-
+            with(binding.content) {
+                viewModel.clearEdit()
+                setText("")
+                groupEditPostContent.visibility = View.GONE
+                clearFocus()
+                AndroidUtils.hideKeyboard(it)
+            }
         }
+
+        binding.content.setOnClickListener{
+            binding.group.visibility=View.VISIBLE
+        }
+//Касательно второй задачи, если пользователь отменит редактирование и попытается создать новый пост,
+        // то вместо нового поста будет отредактирован тот, редактирование которого отменяли.
+        // Дело в том, что при отмене редактирования вы не сбрасываете поле edited вьюмодели до дефолтного
+        // значения и в нём продолжает “лежать” старый пост.
+
 
     }
 }
