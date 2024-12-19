@@ -45,13 +45,12 @@ class PostViewHolder(
             author.text = post.author
             content.text = post.content
             published.text = post.published
-            likeCount.text = Count.formatNumber(post.likes)
-            shareCount.text = Count.formatNumber(post.sharing)
-            viewsCount.text = Count.formatNumber(post.views)
+           // likeCount.text = Count.formatNumber(post.likes)
+            share.text = Count.formatNumber(post.sharing)
+            views.text = Count.formatNumber(post.views)
+            like.text=Count.formatNumber(post.likes)
 
-            like.setImageResource(
-                if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.baseline_favorite_border_24
-            )
+            like.isChecked =post.likedByMe
 
             like.setOnClickListener {
                 if (post.likedByMe) post.likes-- else post.likes++
@@ -81,8 +80,8 @@ class PostViewHolder(
                 post.sharing++
                 onOnInteractionListener.onShare(post)
             }
-            likeCount.text = Count.formatNumber(post.likes)
-            shareCount.text = Count.formatNumber(post.sharing)
+            like.text = Count.formatNumber(post.likes)
+            share.text = Count.formatNumber(post.sharing)
 
             views.setOnClickListener {
                 //  viewModel.views()
