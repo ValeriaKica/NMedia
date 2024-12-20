@@ -94,7 +94,7 @@
         android:textColor="?attr/colorControlNormal"
         app:icon="@drawable/ic_like_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
+        app:layout_constraintTop_toBottomOf="@id/video"
         tools:ignore="TouchTargetSizeCheck"
 
         />
@@ -112,7 +112,7 @@
         android:textColor="?attr/colorControlNormal"
         app:icon="@drawable/ic_repost"
         app:layout_constraintLeft_toRightOf="@id/like"
-        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
+        app:layout_constraintTop_toBottomOf="@id/video"
         tools:ignore="TouchTargetSizeCheck" />
 
     <com.google.android.material.button.MaterialButton
@@ -127,10 +127,23 @@
         android:contentDescription="@string/description_post_share"
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrierIcons"
+        app:layout_constraintTop_toBottomOf="@id/video"
         app:icon="@drawable/ic_view"
         tools:ignore="TouchTargetSizeCheck"
 
         />
+    <ImageButton
+        android:id="@+id/video"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:background="@mipmap/ic_simpson"
+        android:checkable="true"
+        android:src="@drawable/ic_play_24"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:visibility="visible" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

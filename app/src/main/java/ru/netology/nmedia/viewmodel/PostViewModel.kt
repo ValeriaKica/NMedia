@@ -39,10 +39,11 @@ class PostViewModel : ViewModel() {
         }
         edited.value = edited.value?.copy(content = text)
     }
-
     fun clearEdit() {
         edited.value = emty
     }
+    fun videoById()=repository.videoById()
+
 
 
     //  fun applyChangesAndSave(newText: String){
