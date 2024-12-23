@@ -41,73 +41,49 @@ object Count {
 }
 
 
+//  fun CountLike(like: Int):String {
+//      return when (like){
+//          in 0..999 -> like.toString()
+//          in 1_000..1_099 -> "1K"
+//          in 1_100..9_999 -> calcLike(like, 1)+"K"
+//          in 10_000..999_999 -> calcLike(like, 0)+"K"
+//          in 1_000_000..999_999_999 -> calcLike(like, 1)+"M"
+//         else -> "Более 1 Billion"
+//      }
+//  }
+//  fun CountSharung(sharing: Int):String {
+//      return when (sharing){
+//         in 0..999 -> sharing.toString()
+//          in 1_000..1_099 -> "1K"
+//           in 1_100..9_999 -> calcLike(sharing, 1)+"K"
+//           in 10_000..999_999 -> calcLike(sharing, 0)+"K"
+//           in 1_000_000..999_999_999 -> calcLike(sharing, 1)+"M"
+//           else -> "Более 1 Billion"
+//       }
+//   }
+//   fun CountViews(views:Int):String{
+//       return when (views){
+//          in 0..999 -> views.toString()
+//           in 1_000..1_099 -> "1K"
+//           in 1_100..9_999 -> calcLike(views, 1)+"K"
+//          in 10_000..999_999 -> calcLike(views, 0)+"K"
+//          in 1_000_000..999_999_999 -> calcLike(views, 1)+"M"
+//           else -> "Более 1 Billion"
+//      }
+//  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //  fun CountLike(like: Int):String {
-  //      return when (like){
-  //          in 0..999 -> like.toString()
-  //          in 1_000..1_099 -> "1K"
-  //          in 1_100..9_999 -> calcLike(like, 1)+"K"
-  //          in 10_000..999_999 -> calcLike(like, 0)+"K"
-  //          in 1_000_000..999_999_999 -> calcLike(like, 1)+"M"
-   //         else -> "Более 1 Billion"
-  //      }
-  //  }
-  //  fun CountSharung(sharing: Int):String {
-  //      return when (sharing){
-   //         in 0..999 -> sharing.toString()
-  //          in 1_000..1_099 -> "1K"
- //           in 1_100..9_999 -> calcLike(sharing, 1)+"K"
- //           in 10_000..999_999 -> calcLike(sharing, 0)+"K"
- //           in 1_000_000..999_999_999 -> calcLike(sharing, 1)+"M"
- //           else -> "Более 1 Billion"
- //       }
- //   }
- //   fun CountViews(views:Int):String{
- //       return when (views){
-  //          in 0..999 -> views.toString()
- //           in 1_000..1_099 -> "1K"
- //           in 1_100..9_999 -> calcLike(views, 1)+"K"
-  //          in 10_000..999_999 -> calcLike(views, 0)+"K"
-  //          in 1_000_000..999_999_999 -> calcLike(views, 1)+"M"
- //           else -> "Более 1 Billion"
-  //      }
-  //  }
-
-   // fun calcLike(like: Int, places: Int): String {
-   //      //при больших цифрах, отображаемое округление
-    //    val df: DecimalFormat
-    //
-    //    if (places==1){
-    //         df = DecimalFormat("###.#")
-    //     }else{
-    //           df = DecimalFormat("###")
-   //       }
-    //      val liked: Double
-    //      liked = like.toDouble() / 1000
-    //       return df.format(liked)
-    //   }
+// fun calcLike(like: Int, places: Int): String {
+//      //при больших цифрах, отображаемое округление
+//    val df: DecimalFormat
+//
+//    if (places==1){
+//         df = DecimalFormat("###.#")
+//     }else{
+//           df = DecimalFormat("###")
+//       }
+//      val liked: Double
+//      liked = like.toDouble() / 1000
+//       return df.format(liked)
+//   }
 
 

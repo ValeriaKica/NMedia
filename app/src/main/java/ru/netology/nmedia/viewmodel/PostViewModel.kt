@@ -1,10 +1,14 @@
 package ru.netology.nmedia.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
+import ru.netology.nmedia.repository.PostRepositorySharedFilesImpl
+import ru.netology.nmedia.repository.PostRepositorySharedPrefsImpl
 
 private val emty = Post(
     id = 0L,
@@ -14,9 +18,9 @@ private val emty = Post(
     likedByMe = false
 )
 
-class PostViewModel : ViewModel() {
+class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: PostRepository = PostRepositoryInMemoryImpl()
+    private val repository: PostRepository = PostRepositorySharedFilesImpl(application)
 
     val data = repository.getAll()
     val edited = MutableLiveData(emty)
@@ -39,26 +43,10 @@ class PostViewModel : ViewModel() {
         }
         edited.value = edited.value?.copy(content = text)
     }
+
     fun clearEdit() {
         edited.value = emty
     }
-    fun videoById()=repository.videoById()
-
-
-
-    //  fun applyChangesAndSave(newText: String){
-    //   edited.value?.let {
-    //       val  text = newText.trim()
-    //        if(text != it.content){
-    //           repository.save(it.copy(content = text))
-    //            return
-    //        }
-    //    }
-    //    edited.value = emty
-    // }
-    // fun edit(post: Post){
-    //     edited.value= post
-    // }
 
     fun likeById(id: Long) = repository.likeById(id)
     fun shareById(id: Long) = repository.shareById(id)

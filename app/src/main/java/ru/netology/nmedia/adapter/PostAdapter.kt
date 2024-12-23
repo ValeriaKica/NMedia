@@ -13,11 +13,11 @@ import ru.netology.nmedia.dto.Count
 import ru.netology.nmedia.dto.Post
 
 interface OnInteractionListener {
-    fun onLike(post: Post){}
-    fun onShare(post: Post){}
-    fun onRemove(post: Post){}
-    fun onEdit(post: Post){}
-    fun onVideo(post: Post){}
+    fun onLike(post: Post) {}
+    fun onShare(post: Post) {}
+    fun onRemove(post: Post) {}
+    fun onEdit(post: Post) {}
+    fun onVideo(post: Post) {}
 }
 
 
@@ -47,12 +47,11 @@ class PostViewHolder(
             author.text = post.author
             content.text = post.content
             published.text = post.published
-           // likeCount.text = Count.formatNumber(post.likes)
             share.text = Count.formatNumber(post.sharing)
             views.text = Count.formatNumber(post.views)
-            like.text=Count.formatNumber(post.likes)
+            like.text = Count.formatNumber(post.likes)
 
-            like.isChecked =post.likedByMe
+            like.isChecked = post.likedByMe
 
             like.setOnClickListener {
                 if (post.likedByMe) post.likes-- else post.likes++

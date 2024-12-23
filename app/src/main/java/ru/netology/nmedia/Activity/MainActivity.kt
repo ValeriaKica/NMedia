@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //  val groupEditPostContent = binding.group
-        //  groupEditPostContent.visibility = View.GONE
 
         val viewModel by viewModels<PostViewModel>()
 
@@ -67,7 +65,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onVideo(post: Post) {
-                viewModel.videoById()
                 if (post.video.isNotEmpty()) {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
                     startActivity(intent)
@@ -89,49 +86,5 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener() {
             newPostLauncher.launch()
         }
-
-        //    viewModel.edited.observe(this) {
-        //      with(binding.content){
-        //          if (it.id != 0.toLong()){
-        //               binding.group.visibility=View.VISIBLE
-        //               requestFocus()
-        //               setText(it.content)
-        //           }
-        //       }
-        //    }
-//
-        //      binding.save.setOnClickListener {
-        //        with(binding.content) {
-        //          if (text.isNullOrBlank()) {
-        //            Toast.makeText(this@MainActivity,
-        //                    context.getString(R.string.error_empty_content),
-        //                    Toast.LENGTH_SHORT
-        ///                ).show()
-        //                return@setOnClickListener
-        //            }
-//
-        //              viewModel.changeContent(text.toString())
-        //            viewModel.save()
-//
-        //              setText("")
-        //            clearFocus()
-        //          AndroidUtils.hideKeyboard(this)
-        //              binding.group.visibility = View.GONE
-        //         }
-        //     }
-
-        //       binding.clear.setOnClickListener {
-//            with(binding.content) {
-        //               viewModel.clearEdit()
-//                setText("")
-        //              groupEditPostContent.visibility = View.GONE
-        //               clearFocus()
-        //               AndroidUtils.hideKeyboard(it)
-        //           }
-        //       }
-
-        //       binding.content.setOnClickListener{
-//            binding.group.visibility=View.VISIBLE
-//        }
     }
 }

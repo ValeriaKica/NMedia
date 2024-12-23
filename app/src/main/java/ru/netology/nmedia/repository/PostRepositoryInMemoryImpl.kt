@@ -126,7 +126,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun videoById() {
-        data.value=posts
+        data.value = posts
     }
 
 }

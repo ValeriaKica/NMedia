@@ -9,7 +9,7 @@ data class Post(
     var sharing: Int = 999,
     var likes: Int = 999,
     var views: Int = 999,
-    var video:String="",
+    var video: String = "",
     var likedByMe: Boolean = false,
 )
 
