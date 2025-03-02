@@ -18,31 +18,33 @@ interface OnInteractionListener {
     fun onRemove(post: Post) {}
     fun onEdit(post: Post) {}
     fun onVideo(post: Post) {}
+    fun onPost(id: Long) {}
 }
 
 
 class PostAdapter(
-    private val onOnInteractionListener: OnInteractionListener
+    private val onInteractionListener: OnInteractionListener
 ) : ListAdapter<Post, PostViewHolder>(PostsDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onOnInteractionListener)
+        return PostViewHolder(binding, onInteractionListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
         holder.bind(post)
     }
-
-
 }
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val onOnInteractionListener: OnInteractionListener
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(post: Post) {
+        val bigClick = View.OnClickListener { onInteractionListener.onPost(post.id) }
+
         binding.apply {
             author.text = post.author
             content.text = post.content
@@ -55,20 +57,34 @@ class PostViewHolder(
 
             like.setOnClickListener {
                 if (post.likedByMe) post.likes-- else post.likes++
-                onOnInteractionListener.onLike(post)
+                onInteractionListener.onLike(post)
             }
+
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.menu_post)
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.remove -> {
-                                onOnInteractionListener.onRemove(post)
+                                onInteractionListener.onRemove(post)
                                 true
                             }
+//                            R.id.fab -> {
+//                                val posts = Post (
+//                                    id = -1L,
+//                                    author = it.context.getString(R.string.add_post),
+//                                    content = "",
+//                                    published = "",
+//                                    likes = 0,
+//                                    sharing = 0,
+//                                    views = 0,
+//                                    video = ""
+//                                )
+//                                onInteractionListener.onEdit(posts)
+//                                true
 
                             R.id.edit -> {
-                                onOnInteractionListener.onEdit(post)
+                                onInteractionListener.onEdit(post)
                                 true
                             }
 
@@ -78,17 +94,16 @@ class PostViewHolder(
                 }.show()
             }
             share.setOnClickListener {
-                post.sharing++
-                onOnInteractionListener.onShare(post)
+               // post.sharing++
+                onInteractionListener.onShare(post)
             }
-            like.text = Count.formatNumber(post.likes)
-            share.text = Count.formatNumber(post.sharing)
 
             video.visibility = if (post.video.isNotEmpty())
                 View.VISIBLE else View.GONE
             video.setOnClickListener {
-                onOnInteractionListener.onVideo(post)
+                onInteractionListener.onVideo(post)
             }
+            cardlayout.setOnClickListener(bigClick)
 
         }
     }
